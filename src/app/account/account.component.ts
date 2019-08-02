@@ -6,15 +6,17 @@ import {AccountsService} from '../accounts.service';
   selector: 'app-account',
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.css'],
-  providers: [LoggingService] // don't add AccountsService (Hierarchical Injectors)
+  // providers: [LoggingService] // don't add AccountsService (Hierarchical Injectors)
 })
 export class AccountComponent {
   @Input() account: {name: string, status: string};
   @Input() id: number;
-  constructor(private loggingService: LoggingService, private accountsService: AccountsService) {}
+  constructor(
+      // private loggingService: LoggingService,
+      private accountsService: AccountsService) {}
 
   onSetTo(status: string) {
     this.accountsService.changeStatus(this.id, status);
-    this.loggingService.logStatusChange(status);
+    // this.loggingService.logStatusChange(status);
   }
 }
